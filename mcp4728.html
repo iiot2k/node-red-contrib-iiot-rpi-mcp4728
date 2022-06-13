@@ -1,0 +1,89 @@
+<!--
+  Copyright 2022 Ocean (iiot2k@gmail.com).
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<script type="text/javascript">
+    RED.nodes.registerType('mcp4728', {
+        category: 'iiot modules',
+        color: 'Coral',
+        paletteLabel: 'mcp4728',
+        defaults: {
+            name:     { value: "" },
+            channel:  { value: "0", required: true },
+            gain:     { value: "0", required: true },
+            init:     { value: 0,  required: true,  validate: function(v) { return RED.validators.number(v) && (v >= 0) && (v <= 4095); } },
+        },
+        inputs: 1,
+        outputs: 0,
+        inputLabels: ["numeric value"],
+        icon: "voltmeter.png",
+        labelStyle: function() { return this.name ? "node_label_italic" : ""; },
+        label: function () {
+            return this.name || "mcp4728 @60#" + String.fromCharCode(65 + parseInt(this.channel));
+        },
+    });
+</script>
+
+<script type="text/html" data-template-name="mcp4728">
+    <div class="form-row">
+        <label style="width:100%; border-bottom: 2px solid rgb(0, 0, 0);"><b>MCP4728 12 bit Digital to Analog Converter</b></label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-channel"><b>Channel</b></label>
+        <select type="text" id="node-input-channel" style="width: auto;">
+            <option value="0">A</option>
+            <option value="1">B</option>
+            <option value="2">C</option>
+            <option value="3">D</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-gain"><b>Output Range</b></label>
+        <select type="text" id="node-input-gain" style="width: auto;">
+            <option value="0">2048mV</option>
+            <option value="1">4096mV</option>
+            <option value="2">VDD</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-init"><b>Init</b></label>
+        <input id="node-input-init" input type="number" min="0" max="4095" required style="width: auto;">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><b>Name</b></label>
+        <input id="node-input-name" type="text" title="Give this node a name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="mcp4728">
+    <p>MCP4728 12it Digital to Analog Converter</p>
+    <h3><b>Input:</b></h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">number</span></dt>
+        <dd>Internal Ref. output 2048mV/4095</dd>
+        <dd>Internal Ref. output 4096mV/4095</dd>
+        <dd>External Ref. output VDD/4095</dd>
+    </dl>
+    <h3><b>Details:</b></h3>
+    <p>
+        Sets on input message dac.<br><br>
+        <p class="form-tips">
+            This node works on Raspberry Pi<br>
+            with 32bit or 64bit OS.<br>
+            On input message dac is set.<br>
+            Enable I2C with raspi-config.<br>
+        </p>
+	</p>
+</script>

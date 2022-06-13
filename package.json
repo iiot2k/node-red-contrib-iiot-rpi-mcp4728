@@ -1,0 +1,29 @@
+{
+  "name": "node-red-contrib-iiot-rpi-mcp4728",
+  "version": "1.0.20",
+  "description": "A Node-Red node for mcp4728 digital to analog converter",
+
+  "dependencies": {
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iiot2k/node-red-contrib-iiot-rpi-mcp4728"
+  },
+
+  "license": "Apache-2.0",
+  "keywords": ["node-red", "raspberry pi", "rpi", "mcp4728",
+    "iot", "iiot", "analog"],
+
+  "node-red": {
+    "nodes": {
+      "iiot-mcp4728": "mcp4728.js"
+    }
+  },
+
+  "author": {
+    "name": "Ocean",
+    "email": "iiot2k@gmail.com",
+    "url": "https://github.com/iiot2k/node-red-contrib-iiot-rpi-mcp4728"
+  }
+}
